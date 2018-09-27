@@ -19,6 +19,7 @@ public class BotActions {
      */
     public static void fillThingsIn(Robot bot, String title, String description, String tags, int counter)
     {
+    	//TODO: Fix the tabs, as they're incorrect again
         if(counter==0)
             tab(bot,12);
         else if (counter==1)
@@ -99,7 +100,7 @@ public class BotActions {
         {
             Stage ErrorStage = new Stage();
             HBox inside = new HBox();
-            Scene ErrorScene = new Scene(inside, Utilities.errorSize, Utilities.errorSizeTwo);
+            Scene ErrorScene = new Scene(inside, Utilities.ERROR_SIZE, Utilities.ERROR_SIZE_TWO);
             Text error = new Text("Oh dear, looks like the robot doesn't quite get how to type " + c + ", email glaciernester@gmail.com and tell him what to teach the bot.");
             inside.getChildren().add(error);
             ErrorStage.setScene(ErrorScene);
