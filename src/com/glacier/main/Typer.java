@@ -2,20 +2,26 @@ package com.glacier.main;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import com.glacier.util.Utilities;
 import com.glacier.handlers.activateHandler;
+import com.glacier.util.Utilities;
 
-import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
-import javafx.scene.text.Text;
-import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 
 /*
@@ -49,7 +55,7 @@ public class Typer extends Application
 					btStart.setOnAction(new activateHandler(titles.getText(),descriptions.getText(),tags.getText()));
 				}
 			}
-		);
+		);//when the start button is pressed, update the activateHandler to have the desired titles, descriptions, and text
         btStart.setOnAction(new activateHandler(titles.getText(),descriptions.getText(),tags.getText()));
         titles.setPrefColumnCount(30);
         titles.setPrefHeight(100);
@@ -74,7 +80,25 @@ public class Typer extends Application
         bot.keyPress(KeyEvent.VK_HOME);
         bot.keyRelease(KeyEvent.VK_HOME);
     }
-    public static void main(String[] args) {
-        launch(args);
+    public static void main(String[] args) throws IOException {
+    	File logFolder = new File("C:\\Glacier Nester\\logs");
+    	File file = null;
+    	if(!logFolder.exists())
+    	{
+    		logFolder.setWritable(true);
+    		if(logFolder.mkdirs())
+    		{
+    			file = new File("C:\\Glacier Nester\\logs\\YoutubeTyper.log");
+    		}
+    	}
+    	else
+    	{
+    		file = new File("C:\\Glacier Nester\\logs\\YoutubeTyper.log");
+    	}
+    	FileOutputStream fos = new FileOutputStream(file);
+		PrintStream ps = new PrintStream(fos);
+		System.setErr(ps);
+		System.err.println("Started MouseJiggler at " + DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss").format(LocalDateTime.now()));
+    	launch(args);
     }
 }
