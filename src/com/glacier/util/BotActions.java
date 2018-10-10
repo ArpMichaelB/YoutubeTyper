@@ -137,6 +137,14 @@ public class BotActions {
     			Runtime.getRuntime().exec(command);
     		}
     	}
+    	else if(System.getProperty("os.name").contains("mac"))
+    	{
+    		Runtime.getRuntime().exec("sudo systemsetup -setcomputersleep Never");
+    	}
+    	else if(System.getProperty("os.name").contains("nix"))
+    	{
+    		Runtime.getRuntime().exec("sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target");
+    	}
     	else
     	{
     		System.err.println( "Unsupported System for keep-awake detected at " + DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss").format(LocalDateTime.now()));
