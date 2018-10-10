@@ -2,6 +2,8 @@ package com.glacier.util;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -124,5 +126,28 @@ public class BotActions {
             ErrorStage.show();
             //above shows a window that tells the user which key caused a problem
         }
+    }
+    public static void jiggle(Robot bot) throws IOException
+    {
+    	System.out.println(File.listRoots()[0].getPath().contains(":\\"));
+    	if(File.listRoots()[0].getPath().contains(":\\"))
+    	{
+    		for(String command : Utilities.COMMANDS)
+    		{
+    			Runtime.getRuntime().exec(command);
+    		}
+    	}
+    	else
+    	{
+    		System.err.println( "Unsupported System for keep-awake detected at " + DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss").format(LocalDateTime.now()));
+        	Stage ErrorStage = new Stage();
+            HBox inside = new HBox();
+            Scene ErrorScene = new Scene(inside, Utilities.ERROR_SIZE, Utilities.ERROR_SIZE_TWO);
+            Text error = new Text("I can't support keeping your computer awake just yet, sorry. I'll work on it.");
+            inside.getChildren().add(error);
+            ErrorStage.setScene(ErrorScene);
+            ErrorStage.show();
+            
+    	}
     }
 }

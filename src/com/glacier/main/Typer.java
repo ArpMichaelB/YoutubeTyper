@@ -17,7 +17,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -45,9 +45,9 @@ public class Typer extends Application
         HBox inVBox = new HBox();
         Text message = new Text("Delimit items with +, make sure to have a + at the end");
         Button btStart = new Button("Get to work!");
-        TextField titles = new TextField();//what are the titles? (split by +)
-        TextField descriptions = new TextField();//what are the descriptions? (split by +)
-        TextField tags = new TextField();//what are the sets of tags? (split by +)
+        TextArea titles = new TextArea();//what are the titles? (split by +)
+        TextArea descriptions = new TextArea();//what are the descriptions? (split by +)
+        TextArea tags = new TextArea();//what are the sets of tags? (split by +)
         btStart.pressedProperty().addListener(
 			new ChangeListener<Boolean>(){
 				@Override
@@ -60,10 +60,13 @@ public class Typer extends Application
 
         btStart.setOnAction(new activateHandler(titles.getText(),descriptions.getText(),tags.getText()));
         titles.setPrefColumnCount(30);
+        titles.setWrapText(true);
         titles.setPrefHeight(100);
         descriptions.setPrefColumnCount(30);
+        descriptions.setWrapText(true);
         descriptions.setPrefHeight(100);
         tags.setPrefColumnCount(30);
+        tags.setWrapText(true);
         tags.setPrefHeight(100);//set the sizes of the text boxes so they look nicer
         inputs.getChildren().addAll(titles,descriptions,tags);//put the text fields into their set
         inVBox.getChildren().addAll(inputs,btStart);//put the button and set of text fields next to each other
@@ -72,30 +75,21 @@ public class Typer extends Application
         primaryStage.setScene(primscene);//make the scene with all the stuff in it and set it to the main window
         primaryStage.show();//show the main window
     }
-    
-    public void jiggle(Robot bot)
-    {
-    	//TODO: Make this do more than just hit escape then home
-    	//look into changing the sleep settings from the command line rather than relying on seeing the progress bar with the robot library
-        bot.keyPress(KeyEvent.VK_ESCAPE);
-        bot.keyRelease(KeyEvent.VK_ESCAPE);
-        bot.keyPress(KeyEvent.VK_HOME);
-        bot.keyRelease(KeyEvent.VK_HOME);
-    }
     public static void main(String[] args) throws IOException {
-    	File logFolder = new File("C:\\Glacier Nester\\logs");
+    	String baseDrive = File.listRoots()[0].getPath();
+    	File logFolder = new File(baseDrive+"Glacier Nester/logs");
     	File file = null;
     	if(!logFolder.exists())
     	{
     		logFolder.setWritable(true);
     		if(logFolder.mkdirs())
     		{
-    			file = new File("C:\\Glacier Nester\\logs\\YoutubeTyperError.log");
+    			file = new File(baseDrive+"Glacier Nester/logs/YoutubeTyperError.log");
     		}
     	}
     	else
     	{
-    		file = new File("C:\\Glacier Nester\\logs\\YoutubeTyperError.log");
+    		file = new File(baseDrive+"Glacier Nester/logs/YoutubeTyperError.log");
     	}
     	FileOutputStream fos = new FileOutputStream(file);
 		PrintStream ps = new PrintStream(fos);

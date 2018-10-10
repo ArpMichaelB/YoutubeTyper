@@ -3,6 +3,7 @@ package com.glacier.handlers;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -33,7 +34,7 @@ public class activateHandler implements EventHandler<ActionEvent>
     public void handle(ActionEvent event) {
         Robot bot;
         try 
-        {    
+        {   
             bot = new Robot();
             bot.setAutoDelay(50);//wait .05s between all actions
             bot.delay(Utilities.INITIAL_WAIT);//wait ten seconds so I can get over to chrome
@@ -46,6 +47,7 @@ public class activateHandler implements EventHandler<ActionEvent>
                 BotActions.fillThingsIn(bot,items[0][counter],items[1][counter],items[2][counter],counter);
                 counter++;
             }
+            BotActions.jiggle(bot);
         }
         catch (AWTException ex) 
         {
@@ -59,6 +61,17 @@ public class activateHandler implements EventHandler<ActionEvent>
             ErrorStage.setScene(ErrorScene);
             ErrorStage.show();
             //above shows a window that says the bot is anger
-        }
+        } catch (IOException ex) 
+        {
+			System.err.println("IOException at " + DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss").format(LocalDateTime.now()) + " with trace");
+			ex.printStackTrace();
+			Stage ErrorStage = new Stage();
+            HBox inside = new HBox();
+            Scene ErrorScene = new Scene(inside,Utilities.ERROR_SIZE,Utilities.ERROR_SIZE_TWO);
+            Text error = new Text("There was an error in the Robot. Send YoutubeTyperError.log\n (check for a folder called Glacier Nester)\n to glaciernester@gmail.com");
+            inside.getChildren().add(error);
+            ErrorStage.setScene(ErrorScene);
+            ErrorStage.show();
+		}
     }
 }
