@@ -3,6 +3,8 @@ package com.glacier.handlers;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.glacier.util.BotActions;
 import com.glacier.util.Utilities;
@@ -47,11 +49,12 @@ public class activateHandler implements EventHandler<ActionEvent>
         }
         catch (AWTException ex) 
         {
-        	//TODO: make this output something more descriptive to a log file
-            Stage ErrorStage = new Stage();
+        	System.err.println("AWT Exception at " + DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss").format(LocalDateTime.now()) + " with trace");
+        	ex.printStackTrace();
+        	Stage ErrorStage = new Stage();
             HBox inside = new HBox();
             Scene ErrorScene = new Scene(inside,Utilities.ERROR_SIZE,Utilities.ERROR_SIZE_TWO);
-            Text error = new Text("The Bot Is A N G E R");
+            Text error = new Text("There was an error in the Robot. Send YoutubeTyperError.log\n (check for a folder called Glacier Nester)\n to glaciernester@gmail.com");
             inside.getChildren().add(error);
             ErrorStage.setScene(ErrorScene);
             ErrorStage.show();

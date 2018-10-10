@@ -2,6 +2,9 @@ package com.glacier.util;
 
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
@@ -70,7 +73,7 @@ public class BotActions {
                 robot.keyRelease(KeyEvent.VK_SHIFT);
                 robot.keyRelease(KeyEvent.VK_SEMICOLON);
             }
-            else if(c=='’')
+            else if(c=='â€™')
             {
                 robot.keyPress(KeyEvent.VK_QUOTE);
                 robot.keyRelease(KeyEvent.VK_QUOTE);
@@ -82,6 +85,21 @@ public class BotActions {
                 robot.keyRelease(KeyEvent.VK_SHIFT);
                 robot.keyRelease(KeyEvent.VK_1);
             }
+            else if(c=='(')
+            {
+            	robot.keyPress(KeyEvent.VK_SHIFT);
+                robot.keyPress(KeyEvent.VK_9);
+                robot.keyRelease(KeyEvent.VK_SHIFT);
+                robot.keyRelease(KeyEvent.VK_9);
+            }
+            else if(c==')')
+            {
+            	robot.keyPress(KeyEvent.VK_SHIFT);
+                robot.keyPress(KeyEvent.VK_0);
+                robot.keyRelease(KeyEvent.VK_SHIFT);
+                robot.keyRelease(KeyEvent.VK_0);
+            }
+
             else
             {
                 robot.keyPress(KeyEvent.getExtendedKeyCodeForChar(c));
@@ -95,10 +113,12 @@ public class BotActions {
         }
         catch(IllegalArgumentException ex)
         {
+        	System.err.println("IllegalArgumentException from " + c + " at " + DateTimeFormatter.ofPattern("MM/dd/yyyy HH:mm:ss").format(LocalDateTime.now()) + " with trace");
+        	ex.printStackTrace();
             Stage ErrorStage = new Stage();
             HBox inside = new HBox();
             Scene ErrorScene = new Scene(inside, Utilities.ERROR_SIZE, Utilities.ERROR_SIZE_TWO);
-            Text error = new Text("Oh dear, looks like the robot doesn't quite get how to type " + c + ", email glaciernester@gmail.com and tell him what to teach the bot.");
+            Text error = new Text("The bot had a problem typing " + c + ", send the log (found in the folder Glacier Nester) to glaciernester@gmail.com.");
             inside.getChildren().add(error);
             ErrorStage.setScene(ErrorScene);
             ErrorStage.show();
