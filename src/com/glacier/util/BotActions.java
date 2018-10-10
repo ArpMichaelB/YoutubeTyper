@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -23,6 +24,8 @@ public class BotActions {
     {
         if(counter==0)
             tab(bot,Utilities.CYCLE_0_TO_TITLE);
+        else if(counter==1)
+        	tab(bot,Utilities.CYCLE_1_TO_TITLE);
         else
         {
             tab(bot,Utilities.TO_TITLE);
@@ -70,7 +73,7 @@ public class BotActions {
                 robot.keyRelease(KeyEvent.VK_SHIFT);
                 robot.keyRelease(KeyEvent.VK_SEMICOLON);
             }
-            else if(c=='’')
+            else if(c=='â€™')
             {
                 robot.keyPress(KeyEvent.VK_QUOTE);
                 robot.keyRelease(KeyEvent.VK_QUOTE);
@@ -96,6 +99,7 @@ public class BotActions {
                 robot.keyRelease(KeyEvent.VK_SHIFT);
                 robot.keyRelease(KeyEvent.VK_0);
             }
+
             else
             {
                 robot.keyPress(KeyEvent.getExtendedKeyCodeForChar(c));

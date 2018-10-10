@@ -1,8 +1,9 @@
 package com.glacier.util;
 
 public class Utilities {
-	public static final int CYCLE_0_TO_TITLE = 11;
-	public static final int TO_TITLE = 23;
+	public static final int CYCLE_0_TO_TITLE = 14;
+	public static final int CYCLE_1_TO_TITLE = 23;
+	public static final int TO_TITLE = 24;
     public static final int TO_DESCRIPTION = 1;
     public static final int TO_TAGS = 1;//amount of tabs to move from the current item to the item listed
     public static final int MENU_SIZE = 550;

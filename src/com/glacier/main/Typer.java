@@ -24,6 +24,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -56,6 +57,7 @@ public class Typer extends Application
 				}
 			}
 		);//when the start button is pressed, update the activateHandler to have the desired titles, descriptions, and text
+
         btStart.setOnAction(new activateHandler(titles.getText(),descriptions.getText(),tags.getText()));
         titles.setPrefColumnCount(30);
         titles.setPrefHeight(100);
