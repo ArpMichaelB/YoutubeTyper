@@ -88,12 +88,12 @@ public class Typer extends Application
     		logFolder.setWritable(true);
     		if(logFolder.mkdirs())
     		{
-    			file = new File("C:\\Glacier Nester\\logs\\YoutubeTyper.log");
+    			file = new File("C:\\Glacier Nester\\logs\\YoutubeTyperError.log");
     		}
     	}
     	else
     	{
-    		file = new File("C:\\Glacier Nester\\logs\\YoutubeTyper.log");
+    		file = new File("C:\\Glacier Nester\\logs\\YoutubeTyperError.log");
     	}
     	FileOutputStream fos = new FileOutputStream(file);
 		PrintStream ps = new PrintStream(fos);

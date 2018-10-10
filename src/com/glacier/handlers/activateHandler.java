@@ -54,7 +54,7 @@ public class activateHandler implements EventHandler<ActionEvent>
         	Stage ErrorStage = new Stage();
             HBox inside = new HBox();
             Scene ErrorScene = new Scene(inside,Utilities.ERROR_SIZE,Utilities.ERROR_SIZE_TWO);
-            Text error = new Text("There was an error in the Robot. Send YoutubeTyper.log\n (check for a folder called Glacier Nester)\n to glaciernester@gmail.com");
+            Text error = new Text("There was an error in the Robot. Send YoutubeTyperError.log\n (check for a folder called Glacier Nester)\n to glaciernester@gmail.com");
             inside.getChildren().add(error);
             ErrorStage.setScene(ErrorScene);
             ErrorStage.show();
