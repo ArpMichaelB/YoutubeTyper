@@ -21,11 +21,9 @@ public class BotActions {
     {
     	//TODO: Fix the tabs, as they're incorrect again
         if(counter==0)
-            tab(bot,12);
-        else if (counter==1)
-        {
-            tab(bot,18);
-        }
+            tab(bot,Utilities.CYCLE_0_TO_TITLE);
+        else if(counter==1)
+        	tab(bot,Utilities.CYCLE_1_TO_TITLE);
         else
         {
             tab(bot,Utilities.TO_TITLE);
