@@ -73,7 +73,7 @@ public class BotActions {
                 robot.keyRelease(KeyEvent.VK_SHIFT);
                 robot.keyRelease(KeyEvent.VK_SEMICOLON);
             }
-            else if(c=='â€™')
+            else if(c=='’')
             {
                 robot.keyPress(KeyEvent.VK_QUOTE);
                 robot.keyRelease(KeyEvent.VK_QUOTE);
