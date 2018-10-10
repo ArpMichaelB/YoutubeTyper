@@ -19,7 +19,6 @@ public class BotActions {
      */
     public static void fillThingsIn(Robot bot, String title, String description, String tags, int counter)
     {
-    	//TODO: Fix the tabs, as they're incorrect again
         if(counter==0)
             tab(bot,Utilities.CYCLE_0_TO_TITLE);
         else if(counter==1)
