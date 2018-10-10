@@ -11,6 +11,14 @@ public class Utilities {
     public static final int ERROR_SIZE = 375;
     public static final int ERROR_SIZE_TWO = 60;
     public static final int INITIAL_WAIT = 10000;
+    public static final String[] COMMANDS = {"powercfg /change monitor-timeout-ac 0",
+    		"powercfg /change monitor-timeout-dc 0",
+    		"powercfg /change disk-timeout-ac 0",
+    		"powercfg /change disk-timeout-dc 0",
+    		"powercfg /change standby-timeout-ac 0",
+    		"powercfg /change standby-timeout-dc 0",
+    		"powercfg /change hibernate-timeout-ac 0",
+    		"powercfg /change hibernate-timeout-dc 0"};
     /**
      * A method which, given three strings of items delimited by pluses, returns an array of the items being split by the pluses
      * @param titles a string of titles, split by pluses

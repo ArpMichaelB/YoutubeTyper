@@ -75,16 +75,6 @@ public class Typer extends Application
         primaryStage.setScene(primscene);//make the scene with all the stuff in it and set it to the main window
         primaryStage.show();//show the main window
     }
-    
-    public void jiggle(Robot bot)
-    {
-    	//TODO: Make this do more than just hit escape then home
-    	//look into changing the sleep settings from the command line rather than relying on seeing the progress bar with the robot library
-        bot.keyPress(KeyEvent.VK_ESCAPE);
-        bot.keyRelease(KeyEvent.VK_ESCAPE);
-        bot.keyPress(KeyEvent.VK_HOME);
-        bot.keyRelease(KeyEvent.VK_HOME);
-    }
     public static void main(String[] args) throws IOException {
     	String baseDrive = File.listRoots()[0].getPath();
     	File logFolder = new File(baseDrive+"Glacier Nester/logs");
